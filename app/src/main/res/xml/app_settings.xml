@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Location Sharing"
+        android:key="location_category"
+        >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pref_location_sharing"
+            android:persistent="false"
+            android:title="Share Location" />
+    </PreferenceCategory>
+</PreferenceScreen>
