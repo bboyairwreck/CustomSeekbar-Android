@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -53,13 +54,22 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
     @Override
     protected void onBindView(View view) {
         super.onBindView(view);
-        SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekbar);
+        final SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekbar);
         seekBar.setOnSeekBarChangeListener(this);
         seekBar.setMax(mMax);
         seekBar.setProgress(mProgress);
         seekBar.setEnabled(isEnabled());
         tvIntervalValue = (TextView) view.findViewById(R.id.tvIntervalValue);
         updateIntervalTextView(mProgress);
+
+        // Set 1 min button to change seek bar progress to 1 min
+        Button btn1minInterval = (Button) view.findViewById(R.id.btn1minInterval);
+        btn1minInterval.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seekBar.setProgress(mMax/2);
+            }
+        });
     }
 
     @Override
@@ -78,13 +88,15 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
             double percentage;
             int value;
             String unit = "second";
-            if (progress < 500) {
-                percentage = progress/500.0;
+            if (progress < 480) {
+                percentage = progress / 480.0;
                 value = (int) (percentage * 55) + 5;
-
+            } else if (progress >= 480 && progress <= 520) {
+                value = 1;
+                unit = "minute";
             } else {
-                percentage = (progress - 500)/500.0;
-                value = (int) (percentage * 59) + 1;
+                percentage = (progress - 520)/480.0;
+                value = (int) (percentage * 58) + 2;
 
                 unit = "minute";
 

@@ -44,13 +44,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tv5SecLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5 sec" />
-        <TextView
+        <Button
+            android:id="@+id/btn1minInterval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:paddingTop="20dp"
+            android:layout_alignBottom="@id/tv5SecLabel"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:background="@android:color/transparent"
+            android:textStyle="normal"
+            android:textAllCaps="false"
             android:text="1 min" />
 
         <TextView
@@ -65,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:textSize="10dp"
+        android:textSize="12dp"
         android:text="More frequent sharing decreases battery life"
         />
 
